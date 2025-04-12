@@ -1,0 +1,36 @@
+h1{ 
+    text-align: center;
+    color: #00bcd4;
+} 
+
+.profile-card {
+    max-width: 400px;
+    margin: auto;
+    padding: 20px;
+    text-align: center;
+} 
+
+.profile-form {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+} 
+
+button {
+    margin-top: 15px;
+    width: 100%;
+}
+
+.auth-warning {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 15px;
+    text-align: center;
+}
+
+.auth-warning button {
+    width: 80%;
+    max-width: 200px;
+    margin: 5px;
+}

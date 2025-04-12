@@ -1,0 +1,19 @@
+<h1>Products</h1>
+
+<input type="text" [(ngModel)]="searchTerm" placeholder="Search products..." class="search-input">
+
+<div class="product-container">
+    @for (product of products | productFilter:searchTerm; track product.id) {
+      <mat-card class="product-card">
+        <img mat-card-image [src]="product.image" alt="{{ product.name }}">
+        <mat-card-content>
+          <h3>{{ product.name }}</h3>
+          <p>{{ product.description }}</p>
+          <p><strong>Price:</strong> ${{ product.price }}</p>
+        </mat-card-content>
+        <mat-card-actions>
+          <button mat-flat-button color="primary" (click)="addToCart(product)">Add to Cart</button>
+        </mat-card-actions>
+      </mat-card>
+    }
+</div>

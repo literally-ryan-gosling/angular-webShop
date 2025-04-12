@@ -1,0 +1,62 @@
+
+<h1>Your Cart</h1>
+<div class="cart-container">
+    <div *ngIf="cart.length > 0; else cartEmpty">
+      <table mat-table [dataSource]="cart" class="cart-table">
+        
+        <ng-container matColumnDef="image">
+          <th mat-header-cell *matHeaderCellDef> Image </th>
+          <td mat-cell *matCellDef="let item"> <img [src]="item.product.image" alt="{{ item.product.name }}" class="cart-img"> </td>
+        </ng-container>
+
+        <ng-container matColumnDef="name">
+          <th mat-header-cell *matHeaderCellDef> Name </th>
+          <td mat-cell *matCellDef="let item"> {{ item.product.name }} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="price">
+          <th mat-header-cell *matHeaderCellDef> Price </th>
+          <td mat-cell *matCellDef="let item"> ${{ item.product.price }}</td>
+        </ng-container>
+
+        <ng-container matColumnDef="quantity">
+          <th mat-header-cell *matHeaderCellDef> Quantity </th>
+          <td mat-cell *matCellDef="let item">
+            <button mat-icon-button class="decrease-btn" (click)="decreaseQuantity(item.product)">
+              <mat-icon>remove</mat-icon>
+            </button>
+            {{ item.quantity }}
+            <button mat-icon-button class="increase-btn" (click)="increaseQuantity(item.product)">
+              <mat-icon>add</mat-icon>
+            </button>            
+          </td>
+        </ng-container>
+
+        <ng-container matColumnDef="actions">
+          <th mat-header-cell *matHeaderCellDef> Actions </th>
+          <td mat-cell *matCellDef="let item">
+            <button mat-stroked-button color="warn" (click)="removeFromCart(item.product)">Remove</button>
+          </td>
+        </ng-container>
+
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+      </table>
+
+      <div class="cart-actions"> <h3>Total: ${{ getTotal() }}</h3> 
+        <button mat-flat-button color="warn" (click)="emptyCart()">Empty Cart</button>
+        @if (isLoggedIn) {
+          <button mat-flat-button color="primary" (click)="placeOrder()">Order</button>
+        } @if (!isLoggedIn) {
+          <mat-card class="auth-warning">
+            <h2>Complete Your Order</h2>
+            <p>You must be logged in to place an order.</p>
+            <button mat-flat-button color="accent" [routerLink]="['/signup']">Register</button>
+            <button mat-flat-button color="accent" [routerLink]="['/login']">Login</button>
+          </mat-card> }
+          </div>
+      </div>
+      <ng-template #cartEmpty>
+        <p>Your cart is empty.</p>
+      </ng-template>
+  </div>

@@ -1,0 +1,59 @@
+<div class="welcome" [ngStyle]="{ 'color': isLoggedIn ? 'green' : 'red' }">
+  <h2>Welcome to the Lactose💩🐊 - Clothing WebShop</h2>
+  <p>This is a clothing webshop where you can find the latest trends and styles.</p>
+</div>
+
+<div class="carousel-container"> 
+  <button class="carousel-nav left" (click)="prevSlide()">&#10094;</button>
+  
+  @for (product of products; track product.id) { 
+    @if (product.id === products[currentIndex].id) { 
+      <div class="carousel-item">  
+        <mat-card class="carousel-card">
+          <img [src]="product.image" alt="{{ product.name }}"> 
+          <mat-card-title>{{ product.name }}</mat-card-title>
+          <mat-card-subtitle>${{ product.price }}</mat-card-subtitle>
+        </mat-card>  
+      </div>
+    } 
+  }
+
+  <button class="carousel-nav right" (click)="nextSlide()">&#10095;</button> 
+</div>
+
+  
+      <div class="container"> 
+        <mat-card class="info-card"> 
+          <h2>About Us</h2> 
+          <p>We are a team of fashion enthusiasts dedicated to bringing you the best in clothing and accessories.</p> 
+        </mat-card>
+        <mat-card class="values-card"> 
+          <h2>Our Values</h2> 
+          <ul> 
+            <li>Quality: We prioritize high-quality materials and craftsmanship.</li> 
+            <li>Customer Satisfaction: Your happiness is our top priority.</li> 
+            <li>Sustainability: We are committed to ethical sourcing.</li> 
+          </ul>
+        </mat-card> 
+          <mat-card class="auth-card"> 
+            <h2>Get Started</h2> 
+            @if (!isLoggedIn) { 
+              <p>If you haven't already, please register to our webshop!</p> 
+            <button mat-flat-button color="accent" [routerLink]="['/signup']">Register</button> 
+            <p>Or login to start shopping.</p> 
+            <button mat-flat-button color="accent" [routerLink]="['/login']">Login</button> } 
+            @if (isLoggedIn) { 
+              <button mat-flat-button color="accent" [routerLink]="['/products']">Let's shop!</button> 
+            } 
+          </mat-card>
+      </div> 
+
+            <div class="closing-message"> 
+              <h2>🛍️ Find Your Style, Express Yourself!</h2> 
+              <p>Explore our collection and discover fashion that speaks to you. Quality, sustainability, and your happiness are our top priorities.</p> 
+            </div> 
+
+            <div class="social-links"> 
+              <h2>Follow Us!</h2> 
+              <a href="https://facebook.com" target="_blank">Facebook</a> | <a href="https://instagram.com" target="_blank">Instagram</a> | <a href="https://twitter.com" target="_blank">Twitter</a> 
+            </div>

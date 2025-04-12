@@ -1,0 +1,72 @@
+h1{
+    text-align: center;
+    color: #00bcd4;
+}
+
+.orders-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px;
+  }
+  
+  .orders-table {
+    width: 80%;
+    margin-top: 20px;
+  }
+  
+  .order-card {
+    width: 80%;
+    background-color: #f5f5f5;
+    border-radius: 10px;
+    padding: 15px;
+    margin: 20px 0;
+    text-align: center;
+    box-shadow: 2px 2px 8px rgba(0, 0, 0, 0.2);
+  }
+  
+  .order-img {
+    max-width: 60px;
+    height: auto;
+    border-radius: 5px;
+    margin-right: 10px;
+  }
+  
+  .order-details {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  ul {
+    list-style: none;
+    padding: 0;
+  }
+  
+  li {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    padding: 8px;
+    border-bottom: 1px solid #ddd;
+  }
+  
+  li:last-child {
+    border-bottom: none;
+  }
+
+  .auth-warning {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 15px;
+    text-align: center;
+}
+
+.auth-warning button {
+    width: 80%;
+    max-width: 200px;
+    margin: 5px;
+}
+  

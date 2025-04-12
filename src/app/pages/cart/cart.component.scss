@@ -1,0 +1,106 @@
+h1 {
+  text-align: center;
+  color: #00bcd4;
+}
+
+.cart-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 20px;
+}
+
+.container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+}
+
+.cart-info-card,
+.cart-auth-card {
+  width: 80%;
+  max-width: 400px;
+  padding: 15px;
+  text-align: center;
+}
+
+.cart-table {
+  width: 80%;
+  margin-top: 20px;
+}
+
+.cart-table tr {
+  margin-bottom: 20px;
+}
+
+.cart-table td {
+  padding: 15px;
+}
+
+.cart-table tr:not(:last-child) {
+  border-bottom: 1px solid #ccc;
+}
+
+.cart-img {
+  width: 50px;
+  height: auto;
+  border-radius: 5px;
+}
+
+.increase-btn,
+.decrease-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+}
+
+.increase-btn mat-icon {
+  color: white;
+}
+
+.decrease-btn mat-icon {
+  color: white;
+}
+
+.remove-btn,
+.empty-btn {
+  background-color: #d32f2f !important;
+  color: white !important;
+}
+
+.mdc-button-touch-target {
+  width: 48px;
+  height: 48px;
+}
+
+.cart-actions {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin-top: 20px;
+  gap: 10px;
+}
+
+button {
+  width: 100%;
+  max-width: 150px;
+}
+
+.auth-warning {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 15px;
+  text-align: center;
+}
+
+.auth-warning button {
+  width: 80%;
+  max-width: 200px;
+  margin: 5px;
+}
