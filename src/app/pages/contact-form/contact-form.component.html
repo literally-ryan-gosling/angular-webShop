@@ -1,0 +1,39 @@
+<div class="contact-form">
+  <h2>Contact Form</h2>
+
+  <form [formGroup]="contactForm">
+    <mat-form-field appearance="outline">
+      <mat-label>Name</mat-label>
+      <input matInput type="text" [value]="userName" disabled />
+    </mat-form-field>
+
+    <mat-form-field appearance="outline">
+      <mat-label>E-mail</mat-label>
+      <input matInput type="email" [value]="userEmail" disabled />
+    </mat-form-field>
+
+    <mat-form-field appearance="outline">
+  <mat-label>Message type</mat-label>
+  <mat-select formControlName="messageType" (selectionChange)="messageTypeChange.emit($event.value)">
+    <mat-option value="support">Technical support</mat-option>
+    <mat-option value="feedback">Feedback</mat-option>
+    <mat-option value="sales">Sales</mat-option>
+  </mat-select>
+</mat-form-field>
+
+    <mat-form-field appearance="outline">
+        <mat-label>Message</mat-label>
+        <textarea matInput formControlName="message"
+            [ngStyle]="{ 'border-color': contactForm.controls['message'].valid ? 'green' : 'red' }">
+        </textarea>
+    </mat-form-field>
+
+    <p *ngIf="contactForm.get('message')?.invalid && contactForm.get('message')?.touched" class="error">
+      The message field must be at least 5 characters long!
+    </p>
+
+    <div class="button-group">
+      <button mat-flat-button color="primary" (click)="sendMessage()" [disabled]="!contactForm.valid">Send</button>
+    </div>
+  </form>
+</div>

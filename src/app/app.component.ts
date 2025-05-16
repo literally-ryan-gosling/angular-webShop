@@ -25,7 +25,7 @@ import { Subscription } from 'rxjs';
   styleUrl: './app.component.scss'
 })
 export class AppComponent implements OnInit, OnDestroy {
-  title = 'learnflow';
+  title = 'angular-clothingshop';
   isLoggedIn = false;
   private authSubscription?: Subscription;
 

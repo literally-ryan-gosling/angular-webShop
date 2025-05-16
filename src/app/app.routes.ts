@@ -36,6 +36,10 @@ export const routes: Routes = [
         canActivate: [authGuard]
     },
     {
+        path: 'contact',
+        loadComponent: () => import('./pages/contact/contact.component').then(m => m.ContactComponent)
+    },
+    {
         path: '',
         redirectTo: '/home',
         pathMatch: 'full'

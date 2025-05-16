@@ -1,0 +1,17 @@
+<h1>Contact</h1>
+
+<app-contact-form 
+  [userName]="loggedInUser" 
+  [userEmail]="userEmail" 
+  [messageType]="selectedType"
+  (messageTypeChange)="onMessageTypeChange($event)"
+  (messageSent)="onMessageSent($event)" 
+  (messageClosed)="onMessageClosed($event)"
+  (formValidated)="onFormValidated($event)">
+</app-contact-form>
+
+<p>{{ selectedType | messageTypeFeedback }}</p>
+
+
+
+
