@@ -38,18 +38,40 @@ import { ProductFilterPipe } from '../../shared/pipes/product-filter.pipe';
 })
 export class ProductComponent implements OnInit {
   products: Product[] = [];
-  searchTerm: string = ''; 
+  searchTerm: string = '';
+  selectedQuery: string = 'all';
+
   constructor(private productService: ProductService, private cartService: CartService) {}
 
   ngOnInit() {
-    this.productService.getAllProducts().subscribe((data) => {
-      this.products = data;
-    });
+    this.loadProducts();
+  }
+
+  onQueryChange() {
+    this.loadProducts();
+  }
+
+  private loadProducts() {
+    switch (this.selectedQuery) {
+      case 'priceAsc':
+        this.productService.getProductsSortedByPriceAsc().subscribe(data => this.products = data);
+        break;
+      case 'tshirt':
+        this.productService.getTShirtProducts().subscribe(data => this.products = data);
+        break;
+      case 'above50':
+        this.productService.getProductsAbovePrice(50).subscribe(data => this.products = data);
+        break;
+      case 'top3':
+        this.productService.getTopExpensiveProducts(3).subscribe(data => this.products = data);
+        break;
+      default:
+        this.productService.getAllProducts().subscribe(data => this.products = data);
+    }
   }
 
   addToCart(product: Product) {
     this.cartService.addToCart(product);
     console.log("Added to cart:", product);
   }
-  
 }

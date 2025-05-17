@@ -28,9 +28,9 @@
         </textarea>
     </mat-form-field>
 
-    <p *ngIf="contactForm.get('message')?.invalid && contactForm.get('message')?.touched" class="error">
-      The message field must be at least 5 characters long!
-    </p>
+    @if (contactForm.get('message')?.invalid && contactForm.get('message')?.touched) {
+  <p class="error">The message field must be at least 5 characters long!</p>
+    }
 
     <div class="button-group">
       <button mat-flat-button color="primary" (click)="sendMessage()" [disabled]="!contactForm.valid">Send</button>

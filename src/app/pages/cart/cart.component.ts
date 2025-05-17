@@ -26,41 +26,42 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 
     ngOnInit() { 
       this.cartService.getCart().subscribe((data) => { this.cart = data; }); 
-    this.isLoggedIn = localStorage.getItem('isLoggedIn') === 'true'; 
-  } 
+      this.isLoggedIn = localStorage.getItem('isLoggedIn') === 'true'; 
+    } 
 
-    placeOrder() {
-       if (!this.isLoggedIn) {
-         return; 
-        } 
-       this.orderService.placeOrder("user123", this.cart);
-        this.cartService.emptyCart();
-         this.showSnackBar("Your order has been placed successfully!");
-         } 
+    async placeOrder() {
+      if (!this.isLoggedIn) {
+        return;
+      }
+      const userId = localStorage.getItem('userId') || 'user123';
+      await this.orderService.placeOrder(userId, this.cart);
+      this.cartService.emptyCart();
+      this.showSnackBar("Your order has been placed successfully!");
+    } 
+
     showSnackBar(message: string) {
-       this.snackBar.open(message, "Close", {
-         duration: 3000, verticalPosition: 'top', horizontalPosition: 'center' }); 
+      this.snackBar.open(message, "Close", {
+        duration: 3000, verticalPosition: 'top', horizontalPosition: 'center' }); 
+    }
 
-        }
+    increaseQuantity(product: Product) { 
+      this.cartService.increaseQuantity(product); 
+    } 
 
-         increaseQuantity(product: Product) { 
-          this.cartService.increaseQuantity(product); 
-        } 
-
-        decreaseQuantity(product: Product) { 
-          this.cartService.decreaseQuantity(product); 
-        } 
+    decreaseQuantity(product: Product) { 
+      this.cartService.decreaseQuantity(product); 
+    } 
         
-        removeFromCart(product: Product) { 
-          this.cartService.removeFromCart(product); 
-        } 
+    removeFromCart(product: Product) { 
+      this.cartService.removeFromCart(product); 
+    } 
         
-        public emptyCart() { 
-          this.cartService.emptyCart(); 
-        } 
+    public emptyCart() { 
+      this.cartService.emptyCart(); 
+    } 
 
     getTotal(): number { 
       return Number(this.cartService.getTotal().toFixed(2));
-     } 
+    } 
      
-    }
+  }

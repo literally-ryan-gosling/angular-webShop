@@ -20,7 +20,19 @@ export class OrdersComponent implements OnInit {
   constructor(private orderService: OrderService) {}
 
   ngOnInit() {
-    this.isLoggedIn = localStorage.getItem('isLoggedIn') === 'true'; if (this.isLoggedIn) {
-      this.orderService.getOrders().subscribe((data) => { this.orders = data; });
+    this.isLoggedIn = localStorage.getItem('isLoggedIn') === 'true';
+    if (this.isLoggedIn) {
+      const userId = localStorage.getItem('userId') || 'user123';
+      this.orderService.fetchOrdersForUser(userId).then(() => {
+        this.orderService.getOrders().subscribe((data) => { this.orders = data; });
+      });
+    }
   }
-}}
+
+  deleteOrder(orderId: string) {
+    this.orderService.deleteOrder(orderId).then(() => {
+      const userId = localStorage.getItem('userId') || 'user123';
+      this.orderService.fetchOrdersForUser(userId);
+    });
+  }
+}

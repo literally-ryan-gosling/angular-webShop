@@ -62,6 +62,9 @@ export class LoginComponent implements OnDestroy {
       .then(userCredential => {
         console.log('Login successful:', userCredential.user);
         this.authService.updateLoginStatus(true);
+        if (userCredential.user && userCredential.user.uid) {
+          localStorage.setItem('userId', userCredential.user.uid);
+        }
         this.router.navigateByUrl('/home');
       })
       .catch(error => {

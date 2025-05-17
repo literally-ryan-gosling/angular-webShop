@@ -6,6 +6,7 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatSelectModule } from '@angular/material/select';
 import { MatButtonModule } from '@angular/material/button';
+import { ContactFormService } from '../../shared/services/contact-form.service';
 
 @Component({
   selector: 'app-contact-form',
@@ -33,11 +34,20 @@ export class ContactFormComponent {
   messageType: new FormControl('support', [Validators.required]),
 });
 
+  constructor(private contactFormService: ContactFormService) {}
 
-  sendMessage() {
+  async sendMessage() {
     if (this.contactForm.valid) {
-      this.messageSent.emit(`Feladó: ${this.userName}, Üzenet: ${this.contactForm.value.message}`);
+      await this.contactFormService.sendContactMessage({
+        name: this.userName,
+        email: this.userEmail,
+        messageType: this.contactForm.value.messageType!,
+        message: this.contactForm.value.message!
+      });
+      this.messageSent.emit(`Sender: ${this.userName}, Message: ${this.contactForm.value.message}`);
       this.formValidated.emit(true);
+      alert('Your message has been sent!');
+      this.contactForm.reset({ messageType: 'support', message: '' });
     } else {
       this.formValidated.emit(false);
     }

@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { ContactFormComponent } from '../contact-form/contact-form.component';
 import { MessageTypeFeedbackPipe } from '../../shared/pipes/message-type.pipe'; 
+import { UserService } from '../../shared/services/user.service';
 
 @Component({
   selector: 'app-contact',
@@ -10,10 +11,22 @@ import { MessageTypeFeedbackPipe } from '../../shared/pipes/message-type.pipe';
   imports: [ContactFormComponent, MessageTypeFeedbackPipe]
 })
 export class ContactComponent {
-  loggedInUser = 'Teszt';
-  userEmail = 'teszt@gmail.com';
+  loggedInUser = '';
+  userEmail = '';
   selectedType = 'support';
   messageDate = new Date();
+
+  constructor(private userService: UserService) {
+    const userId = localStorage.getItem('userId') || '';
+    if (userId) {
+      this.userService.getUserProfileById(userId).subscribe(user => {
+        if (user) {
+          this.loggedInUser = `${user.name.firstname} ${user.name.lastname}`;
+          this.userEmail = user.email;
+        }
+      });
+    }
+  }
 
   onMessageSent(message: string) {
     console.log('Üzenet elküldve:', message);
