@@ -47,6 +47,17 @@ export class ProductService{
     });
   }
 
+  getProductsInPriceRange(minPrice: number, maxPrice: number): Observable<Product[]> {
+  return this.queryProducts([
+    where('price', '>=', minPrice),
+    where('price', '<=', maxPrice)
+  ]);
+}
+
+  getProductsSortedByPriceDesc(): Observable<Product[]> {
+    return this.queryProducts([orderBy('price', 'desc')]);
+  }
+
   getProductsSortedByPriceAsc(): Observable<Product[]> {
     return this.queryProducts([orderBy('price', 'asc')]);
   }
@@ -61,6 +72,27 @@ export class ProductService{
 
   getTopExpensiveProducts(top: number): Observable<Product[]> {
     return this.queryProducts([orderBy('price', 'desc'), limit(top)]);
+  }
+
+  getProductsByCategoryAndPrice(category: string, minPrice: number, maxPrice: number): Observable<Product[]> {
+    return this.queryProducts([
+      where('category', '==', category),
+      where('price', '>=', minPrice),
+      where('price', '<=', maxPrice)
+    ]);
+  }
+  getProductsByCategoryAndName(category: string, name: string): Observable<Product[]> {
+    return this.queryProducts([
+      where('category', '==', category),
+      where('name', '==', name)
+    ]);
+  }
+  
+  getProductsByCategoryAndDescription(category: string, description: string): Observable<Product[]> {
+    return this.queryProducts([
+      where('category', '==', category),
+      where('description', '==', description)
+    ]);
   }
 
   private queryProducts(constraints: QueryConstraint[]): Observable<Product[]> {

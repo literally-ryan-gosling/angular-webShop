@@ -40,6 +40,8 @@ export class ProductComponent implements OnInit {
   products: Product[] = [];
   searchTerm: string = '';
   selectedQuery: string = 'all';
+  minPriceRange: number = 0;
+  maxPriceRange: number = 0;
 
   constructor(private productService: ProductService, private cartService: CartService) {}
 
@@ -51,10 +53,13 @@ export class ProductComponent implements OnInit {
     this.loadProducts();
   }
 
-  private loadProducts() {
+  loadProducts() {
     switch (this.selectedQuery) {
       case 'priceAsc':
         this.productService.getProductsSortedByPriceAsc().subscribe(data => this.products = data);
+        break;
+      case 'priceDesc':
+        this.productService.getProductsSortedByPriceDesc().subscribe(data => this.products = data);
         break;
       case 'tshirt':
         this.productService.getTShirtProducts().subscribe(data => this.products = data);
@@ -65,8 +70,23 @@ export class ProductComponent implements OnInit {
       case 'top3':
         this.productService.getTopExpensiveProducts(3).subscribe(data => this.products = data);
         break;
+      case 'priceRange':
+        if (this.minPriceRange >= 0 && this.maxPriceRange > 0 && this.maxPriceRange >= this.minPriceRange) {
+          this.productService.getProductsInPriceRange(this.minPriceRange, this.maxPriceRange).subscribe(data => this.products = data);
+        } else {
+          this.products = [];
+        }
+        break;
       default:
         this.productService.getAllProducts().subscribe(data => this.products = data);
+    }
+  }
+
+  loadProductsByPriceRange() {
+    if (this.minPriceRange >= 0 && this.maxPriceRange > 0 && this.maxPriceRange >= this.minPriceRange) {
+      this.productService.getProductsInPriceRange(this.minPriceRange, this.maxPriceRange).subscribe(data => this.products = data);
+    } else {
+      this.products = [];
     }
   }
 

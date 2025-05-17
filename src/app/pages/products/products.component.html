@@ -6,11 +6,24 @@
     <mat-select [(ngModel)]="selectedQuery" (selectionChange)="onQueryChange()">
       <mat-option value="all">All products</mat-option>
       <mat-option value="priceAsc">Price ascending</mat-option>
+      <mat-option value="priceDesc">Price descending</mat-option>
       <mat-option value="tshirt">T-shirt only</mat-option>
       <mat-option value="above50">Price above 50</mat-option>
       <mat-option value="top3">Top 3 expensive</mat-option>
     </mat-select>
   </mat-form-field>
+</div>
+
+<div class="price-range-inputs responsive-price-range">
+  <mat-form-field appearance="fill">
+    <mat-label>Min Price</mat-label>
+    <input matInput type="number" [(ngModel)]="minPriceRange" min="0" placeholder="Min price">
+  </mat-form-field>
+  <mat-form-field appearance="fill">
+    <mat-label>Max Price</mat-label>
+    <input matInput type="number" [(ngModel)]="maxPriceRange" min="0" placeholder="Max price">
+  </mat-form-field>
+  <button mat-flat-button color="primary" (click)="loadProductsByPriceRange()">Apply</button>
 </div>
 
 <mat-form-field appearance="fill" class="search-input">

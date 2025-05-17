@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, AfterViewInit, ViewChild, ElementRef } from '@angular/core';
 import { FormGroup, FormControl, ReactiveFormsModule, Validators } from '@angular/forms';
 import { Router, RouterLink } from '@angular/router';
 import { CommonModule } from '@angular/common';
@@ -26,7 +26,7 @@ import { AuthService } from '../../shared/services/auth.service';
   templateUrl: './signup.component.html',
   styleUrl: './signup.component.scss'
 })
-export class SignupComponent {
+export class SignupComponent implements AfterViewInit {
   signUpForm = new FormGroup({
     email: new FormControl('', [Validators.required, Validators.email]),
     password: new FormControl('', [Validators.required, Validators.minLength(6)]),
@@ -41,10 +41,18 @@ export class SignupComponent {
   showForm = true;
   signupError = '';
 
+  @ViewChild('emailInput') emailInput!: ElementRef;
+
   constructor(
     private router: Router,
     private authService: AuthService
   ) {}
+
+  ngAfterViewInit() {
+    if (this.emailInput) {
+      this.emailInput.nativeElement.focus();
+    }
+  }
 
   signup(): void {
     if (this.signUpForm.invalid) {
@@ -100,4 +108,6 @@ export class SignupComponent {
         }
       });
   }
+
+  
 }
