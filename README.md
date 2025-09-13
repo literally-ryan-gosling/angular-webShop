@@ -3,44 +3,6 @@
 Regisztrálni is lehet, vagy belépés : test@gmail.com, Pw: testpw
 
 
-
-Fordítási hiba nincs (ng serve kiadásakor nincs hiba) ✅ nincs
-
-Futtatási hiba nincs (böngésző konzol részében nincs hiba) ✅ nincs
-
-Adatmodell definiálása (legalább 4 TypeScript interfész vagy class formájában (ugyanennyi kollekció)) ✅ (User.ts, Product.ts, Order.ts, Cart.ts)
-
-Reszponzív, mobile-first felület (minden adat látható és jól jelenik meg böngészőben is, mobil nézetben is) ✅
-
-Legalább 4, de 2 különböző attribútum direktíva használata ✅ ngModel, ngStyle: Home.component.html, Contact-Form.component.html, Product.component.html
-
-Legalább 4, de 2 különböző beépített vezérlési folyamat használata (if, switch, for) ✅ @if, @for: Home.component.html, Product.component.html...
-
-Adatátadás szülő és gyermek komponensek között (legalább 3 @Input és 3 @Output) ✅ Contact-Form.component.ts, Menu.component.ts
-
-Legalább 10 különböző Material elem helyes használata. ✅ MatTableModule, MatButtonModule, MatCardModule, MatIconModule, MatSnackBar, MatInputModule, MatSelectModule, MatFormFieldModule, MatProgressSpinnerModule, MatCheckBoxModule, MatSideNav, MatListModule...
-
-Legalább 2 saját Pipe osztály írása és használata ✅ message-type.pipe a contact formon, product-filter.pipe a product oldalon
-
-Adatbevitel Angular form-ok segítségével megvalósítva (legalább 4) ✅ signup, login, contact-form, profile
-
-Legalább 2 különböző Lifecycle Hook használata a teljes projektben (értelmes tartalommal, nem üresen) ✅ ngOnInit: product.component.ts, AfterViewInit: signup.component.ts...
-
-CRUD műveletek mindegyike megvalósult legalább a projekt fő entitásához (Promise, Observable használattal) ✅ regisztráció: C, productok lekérése: R, profil szerkesztése: U, orderek visszavonása: D
-
-CRUD műveletek service-ekbe vannak kiszervezve és megfelelő módon injektálva lettek ✅ order.service.ts, product.service.ts, cart.service.ts, user.service.ts, auth.service.ts, contact-form.service.ts
-
-Legalább 4 komplex Firestore lekérdezés megvalósítása (ide tartoznak: where feltétel, rendezés, léptetés, limitálás) ✅ product.service.ts.-ben található függvények stb..
-
-Legalább 4 különböző route a különböző oldalak eléréséhez ✅ /products, /profile, /orders, /contact, /cart...
-
-AuthGuard implementációja ✅ auth.service.ts loginnal
-
-Legalább 2 route levédése azonosítással (AuthGuard) (ahol ennek értelme van, pl.: egy fórum témakör megtekinthető bárki számára, de a regisztrált felhasználó adatai nem) ✅ /orders, /profile...
-
-Szubjektív pontozás a projekt egészére vonatkozólag (mennyire fedi le a projekt a témakört (mennyire kapcsolódik hozzá), mennyi lehet a befektetett energia a projektben) 🙏🏻
-
-
 This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 19.2.3.
 
 ## Development server
